@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio Zoom Online</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #001f60, #012a8c);
+            color: white;
+            text-align: center;
+        }
+
+        .logo {
+            margin-top: 25px;
+        }
+
+        .logo img {
+            width: 700px; 
+            height: auto;
+        }
+
+        .radio-card {
+            max-width: 650px;
+            margin: 25px auto;
+            background: linear-gradient(145deg, #ffffff, #f5f5f7);
+            padding: 32px;
+            border-radius: 22px;
+            text-align: center;
+            color: #111;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+            border: 1px solid rgba(255,255,255,0.6);
+            transition: 0.3s ease;
+        }
+
+        .radio-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .radio-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .live-badge {
+            display: inline-block;
+            background: #ff1e1e;
+            color: #fff;
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            animation: pulse 1.4s infinite alternate;
+            margin-bottom: 26px;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .radio-btn {
+            font-size: 22px;
+            padding: 16px 42px;
+            background: #ff3b3b;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.25s ease-in-out;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255,0,0,0.3);
+            margin-bottom: 22px;
+        }
+
+        .radio-btn:hover {
+            background: #d72828;
+            box-shadow: 0 6px 20px rgba(255,0,0,0.45);
+        }
+
+        .radio-btn:active {
+            transform: scale(0.96);
+        }
+
+        .volume-box {
+            font-size: 17px;
+            color: #222;
+            font-weight: 500;
+        }
+
+        .volume-box input {
+            width: 70%;
+        }
+
+        .socials a {
+            color: #4db2ff;
+            font-size: 18px;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 12px;
+            font-size: 14px;
+            background: #001436;
+            color: #9cb8ff;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="logo">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhyxA5Pk1BGraFpfRUxX4LrNozZvdoFeRP-Hld1JbXbwQacIcFjIr2_uCh24RvORRDX-mSR1Hae5ICBmvJWiAQXzqHXE_yHlr8VLuDIdF6IAN5heN1hJm4jly7a4ifi4dEmz1ipdUALrclw3qyUZ6IQZbdMV_4KNksrph0-DhgnUg0ikWhzF48OcYZumttw=s898">
+    </div>
+
+    <div class="radio-card">
+        <div class="radio-title">🎧 Radio Zoom Online</div>
+        <div class="live-badge">🔴 EN VIVO</div>
+
+        <audio id="audio" src="https://stream.zeno.fm/dagq48scgv8uv" preload="none"></audio>
+
+        <button id="playBtn" class="radio-btn">▶ Reproducir</button>
+
+        <div class="volume-box">
+            Volumen <br />
+            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" />
+        </div>
+    </div>
+
+    <div class="socials">
+        <h3>Síguenos en redes</h3>
+        <a href="https://www.instagram.com/radiozoom_online" target="_blank">📸 Instagram</a>
+    </div>
+
+    <footer>© 2025 Radio Zoom Online - Todos los derechos reservados</footer>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const playBtn = document.getElementById('playBtn');
+        const volumeControl = document.getElementById('volumeControl');
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = "⏸ Pausar";
+                playBtn.style.background = "#287bff";
+                playBtn.style.boxShadow = "0 6px 20px rgba(0,100,255,0.45)";
+            } else {
+                audio.pause();
+                playBtn.innerHTML = "▶ Reproducir";
+                playBtn.style.background = "#ff3b3b";
+                playBtn.style.boxShadow = "0 4px 15px rgba(255,0,0,0.3)";
+            }
+        });
+
+        volumeControl.addEventListener('input', function () {
+            audio.volume = this.value;
+        });
+    </script>
+
+</body>
+</html>
