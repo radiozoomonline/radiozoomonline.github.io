@@ -150,13 +150,17 @@
     const playBtn = document.getElementById('playBtn');
     const volumeControl = document.getElementById('volumeControl');
 
+    const streamURL = "https://stream.zeno.fm/dagq48scgv8uv";
+
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
             playBtn.innerHTML = "⏳ Cargando...";
             playBtn.disabled = true;
 
+            // Forzar que vuelva en vivo recargando el stream
+            audio.src = streamURL + "?nocache=" + Date.now();
+
             audio.play().then(() => {
-                // Cuando empieza a reproducir
                 playBtn.innerHTML = "⏸ Pausar";
                 playBtn.style.background = "#287bff";
                 playBtn.style.boxShadow = "0 6px 20px rgba(0,100,255,0.45)";
@@ -175,6 +179,7 @@
         audio.volume = this.value;
     });
 </script>
+
 
 
 </body>
