@@ -146,28 +146,36 @@
     <footer> Radio Zoom Online - Argentina - 2025</footer>
 
     <script>
-        const audio = document.getElementById('audio');
-        const playBtn = document.getElementById('playBtn');
-        const volumeControl = document.getElementById('volumeControl');
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('playBtn');
+    const volumeControl = document.getElementById('volumeControl');
 
-        playBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
+    playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            playBtn.innerHTML = "⏳ Cargando...";
+            playBtn.disabled = true;
+
+            audio.play().then(() => {
+                // Cuando empieza a reproducir
                 playBtn.innerHTML = "⏸ Pausar";
                 playBtn.style.background = "#287bff";
                 playBtn.style.boxShadow = "0 6px 20px rgba(0,100,255,0.45)";
-            } else {
-                audio.pause();
-                playBtn.innerHTML = "▶ Reproducir";
-                playBtn.style.background = "#ff3b3b";
-                playBtn.style.boxShadow = "0 4px 15px rgba(255,0,0,0.3)";
-            }
-        });
+                playBtn.disabled = false;
+            });
+        } else {
+            audio.pause();
+            playBtn.innerHTML = "▶ Reproducir";
+            playBtn.style.background = "#ff3b3b";
+            playBtn.style.boxShadow = "0 4px 15px rgba(255,0,0,0.3)";
+        }
+    });
 
-        volumeControl.addEventListener('input', function () {
-            audio.volume = this.value;
-        });
-    </script>
+    // Control de volumen
+    volumeControl.addEventListener('input', function () {
+        audio.volume = this.value;
+    });
+</script>
+
 
 </body>
 </html>
