@@ -150,7 +150,7 @@ ul   { list-style:none; }
 .volume-slider { -webkit-appearance:none; appearance:none; width:110px; height:4px; background:rgba(255,255,255,0.12); border-radius:var(--radius-full); outline:none; cursor:pointer; }
 .volume-slider::-webkit-slider-thumb { -webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:var(--clr-accent); box-shadow:0 2px 8px rgba(58,102,255,0.5); transition:transform 0.2s; }
 .volume-slider::-webkit-slider-thumb:hover { transform:scale(1.3); }
-.volume-slider::-moz-range-thumb { width:14px; height:14px; border:none; border-radius:50%; background:var(--clr-accent); }
+.volume-slider::-moz-range-thumb { width:100px; height:14px; border:none; border-radius:50%; background:var(--clr-accent); }
 .player-card__wave { height:30px; opacity:0.18; margin-top:8px; }
 .wave-path { fill:none; stroke:var(--clr-accent); stroke-width:2; stroke-dasharray:800; animation:wave-dash 6s linear infinite; }
 @keyframes wave-dash { to{stroke-dashoffset:-800} }
@@ -214,24 +214,108 @@ ul   { list-style:none; }
 .floating-player:hover .floating-player__tooltip { opacity:1; transform:translateX(0); }
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
-@media (max-width:900px) {
-  .about-layout { grid-template-columns:1fr; }
-  .footer__top { grid-template-columns:1fr 1fr; }
-  .footer__brand { grid-column:1/-1; }
+/* ── RESPONSIVE OPTIMIZADO ───────────────────────────────── */
+@media (max-width: 992px) {
+  .about-layout { 
+    grid-template-columns: 1fr; 
+    gap: 40px; 
+    text-align: center;
+  }
+  .about-content .section-title {
+    text-align: center;
+  }
+  .footer__top { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 32px;
+  }
+  .footer__brand { 
+    grid-column: 1 / -1; 
+  }
 }
-@media (max-width:700px) {
-  .header__menu-toggle { display:flex; }
-  .header__nav { position:fixed; inset:0; background:rgba(7,7,26,0.97); backdrop-filter:blur(24px); display:flex; align-items:center; justify-content:center; transform:translateX(100%); transition:transform 0.4s var(--ease-out); z-index:1000; }
-  .header__nav.open { transform:translateX(0); }
-  .header__nav-list { flex-direction:column; gap:16px; text-align:center; }
-  .header__nav-link { font-size:1.2rem; padding:12px 32px; }
-  .footer__top { grid-template-columns:1fr; }
-  .footer__bottom { flex-direction:column; gap:16px; text-align:center; }
-  .player-card { padding:32px 24px 24px; }
-  .player-card__controls { flex-wrap:wrap; gap:24px; }
-  .volume-slider { width:90px; }
+
+@media (max-width: 768px) {
+  .hero__content {
+    padding: 120px 16px 60px;
+    width: 100%;
+  }
+  .player-card { 
+    padding: 32px 20px 24px; 
+    border-radius: var(--radius-lg);
+  }
+  .player-card__info {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .player-card__controls { 
+    flex-direction: column;
+    gap: 20px; 
+  }
+  .player-card__volume {
+    width: 100%;
+    justify-content: center;
+  }
+  .volume-slider { 
+    width: 140px; 
+  }
+
+  /* Menú Móvil */
+  .header__menu-toggle { 
+    display: flex; 
+  }
+  .header__nav { 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(7, 7, 26, 0.98); 
+    backdrop-filter: blur(24px); 
+    -webkit-backdrop-filter: blur(24px);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transform: translateX(100%); 
+    transition: transform 0.4s var(--ease-out); 
+    z-index: 1000; 
+  }
+  .header__nav.open { 
+    transform: translateX(0); 
+  }
+  .header__nav-list { 
+    flex-direction: column; 
+    gap: 24px; 
+    text-align: center; 
+  }
+  .header__nav-link { 
+    font-size: 1.3rem; 
+    padding: 12px 32px; 
+  }
+  
+  .social-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
 }
-@media (max-width:420px) {
-  .social-grid { grid-template-columns:1fr; }
-  .hero__title { font-size:2rem; }
+
+@media (max-width: 480px) {
+  .hero__title { 
+    font-size: 2.2rem; 
+  }
+  .footer__top {
+    grid-template-columns: 1fr;
+    text-align: left; /* <-- Volvemos a alinear textos e h4 a la izquierda */
+  }
+  .footer__social {
+    justify-content: flex-start; /* <-- Los círculos de Instagram/X a la izquierda */
+  }
+  .footer__contact p {
+    justify-content: flex-start; /* <-- Iconos de señal y globo a la izquierda */
+  }
+  .footer__bottom { 
+    flex-direction: column; 
+    gap: 16px; 
+    text-align: left; /* <-- Copyright y botón de volver arriba a la izquierda */
+  }
+  .floating-player {
+    bottom: 16px;
+    right: 16px;
+  }
 }
