@@ -29,34 +29,35 @@ function togglePlay() {
 }
 
 function playRadio() {
-  audio.src = 'https://stream.zeno.fm/dagq48scgv8uv';
-  setStatus('Conectando...', false);
+   audio.src = 'https://stream.zeno.fm/dagq48scgv8uv';
+  
    // Media Session (iPhone / Android)
-if ('mediaSession' in navigator) {
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: 'Radio Zoom Online',
-    artist: 'En Vivo',
-    album: 'Villa Carlos Paz, Córdoba, Argentina',
-    artwork: [
-      {
-        src: 'https://radiozoomonline.github.io/logo_radio_zoom_..png',
-        sizes: '512x512',
-        type: 'image/png'
-      },
-      {
-        src: 'https://radiozoomonline.github.io/logo_radio_zoom_..png',
-        sizes: '1024x1024',
-        type: 'image/png'
-      }
-    ]
-  });
-
-  navigator.mediaSession.setActionHandler('play', playRadio);
-  navigator.mediaSession.setActionHandler('pause', pauseRadio);
-} /*  ====================== */
-  audio.play()
-    .then(() => setPlayingState(true))
-    .catch(() => setStatus('Error al conectar', false));
+   if ('mediaSession' in navigator) {
+     navigator.mediaSession.metadata = new MediaMetadata({
+       title: 'Radio Zoom Online',
+       artist: 'En Vivo',
+       album: 'Villa Carlos Paz, Córdoba, Argentina',
+       artwork: [
+         {
+           src: 'https://radiozoomonline.github.io/logo_radio_zoom_..png',
+           sizes: '512x512',
+           type: 'image/png'
+         },
+         {
+           src: 'https://radiozoomonline.github.io/logo_radio_zoom_..png',
+           sizes: '1024x1024',
+           type: 'image/png'
+         }
+       ]
+     });
+   
+     navigator.mediaSession.setActionHandler('play', playRadio);
+     navigator.mediaSession.setActionHandler('pause', pauseRadio);
+   } /*  ====================== */
+   setStatus('Conectando...', false);
+   audio.play()
+      .then(() => setPlayingState(true))
+      .catch(() => setStatus('Error al conectar', false));
 }
 
 function pauseRadio() {
